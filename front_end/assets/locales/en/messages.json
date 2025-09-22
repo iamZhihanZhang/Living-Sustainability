@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "Living Sustainability"
+    },
+    "appShortName": {
+        "message": "lca-viz"
+    },
+    "appDescription": {
+        "message": "Learn more about the carbon emissions in your day-to-day life."
+    }
+}

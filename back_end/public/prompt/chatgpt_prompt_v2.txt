@@ -1,0 +1,53 @@
+You will be provided with a paragraph of input text. Your task is to extract the main sources of raw materials and production processes mentioned in the text. You will then transform this information into a single-line JSON without whitespaces, following this format:
+
+{"data":{"raw_materials":[{"type":"ratio","ratio":{"value":"<ratio_values>","unit":"<unit>"},"material":[{"name":"<material_name>","emissions":"<emissions_value>","emissions_factor":"<emissions_factor_value>","value":"<value>","unit":"<unit>"}...]},{"type":"singular","material":[{"name":"<material_name>","emissions":"<emissions_value>","emissions_factor":"<emissions_factor_value>","value":"<value>","unit":"<unit>"}]},{"type":"multiple_param","material":[{"name":"<material_name>","parameters":{"<parameter_name>":{"value":"<parameter_value>","unit":"<unit>"}...},"formula":"<calculation_formula>"}]}...]}}
+
+If no relevant raw materials are found, simply return null:
+{"data": null}
+
+Explanation for the JSON format:
+- Replace placeholders in <angle brackets> with actual values.
+
+- "type" defines the structure of each entry:
+
+For "ratio":
+Requires a "ratio" field with "value" (e.g., "146.14:340:6.96") and "unit". The "unit" can either be "l", "ml", "kg", or "g".
+Requires "material" array with multiple entries. Each entry includes "name", "emissions", "emissions_factor", "value", and "unit".
+
+For "singular":
+Only requires the "material" array with a single entry. Each entry includes "name", "emissions", "emissions_factor", "value", and "unit".
+
+For "multiple_param":
+Requires "parameters" field, which is an object containing multiple parameters. Each parameter has a "value" and "unit".
+Includes a "formula" field defining the emissions calculation formula, which always outputs in "kg CO2e."
+
+The "raw_materials" array can contain multiple entries of different "type" values ("ratio", "singular", "multiple_param").
+
+For "ratio" and "singular" fields:
+You will need to estimate the carbon footprint of each raw material in "kg CO2e" for the "emissions" attribute.
+The "emissions_factor" should be the same value as "emissions". Set "value" to "1" and "unit" to an appropriate unit (e.g., "t", "kg", "g", "l", or "ml").
+
+Example Entries
+
+"ratio" example:
+
+Input text:
+"The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets. The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:5 mol% to the acid) of epoxy (EPON 828, Skygeek), adipic acid (Sigma Aldrich) and 1,5,7-triazabicyclo[4.4.0]dec-5-ene (TBD, Sigma Aldrich). The epoxy was poured into a beaker, then placed in a 100 °C heated bath and stirred at 100 r.p.m. for 10 min."
+Expected ouput:
+{"data":{"raw_materials":[{"type":"ratio","ratio":{"value":"146.14:340:6.96","unit":"g"},"material":[{"name":"epoxy","emissions":"0.97","emissions_factor":"0.97","value":"1","unit":"g"},{"name":"adipic acid","emissions":"1.68","emissions_factor":"1.68","value":"1","unit":"g"},{"name":"1,5,7-triazabicyclo[4.4.0]dec-5-ene","emissions":"4.5","emissions_factor":"4.5","value":"1","unit":"g"}]}]}}
+
+Note how the original ratio of 1:1:5 mol% has been converted to a ratio with "g" unit. You will need to convert any ratios with different units into any of these units: "l", "ml", "kg", or "g".
+
+"multiple_param" example:
+
+Input text:
+"The PDMS substrate was pretreated by oxygen plasma at 30 W for 15 s."
+Expected ouput:
+{"data":{"raw_materials":[{"type":"multiple_param","material":[{"name":"oxygen plasma","parameters":{"power":{"value":30,"unit":"W"},"time":{"value":15,"unit":"s"},"co2_per_kwh":{"value":0.5,"unit":"kg/kWh"}},"formula":"((power * time) / (3.6 * 10**6)) * co2_per_kwh"}]}]}}
+
+"singular" example:
+
+Input text:
+"The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets"
+Output text:
+{"data": { "raw_materials": [ { "type": "singular", "material": [ { "name": "vitrimer polymer", "emissions": "2.33", "emissions_factor": "2.33", "value": "1", "unit": "g" } ] }, { "type": "singular", "material": [ { "name": "woven glass fibre sheets", "emissions": "10.1", "emissions_factor": "10.1", "value": "1", "unit": "g" } ] }, ] }}

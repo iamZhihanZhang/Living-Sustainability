@@ -1,0 +1,269 @@
+:root {
+  --eco-green-100: #E1EDE8;
+  --eco-green-200: #C3E3CA;
+  --eco-green-300: #ABD2B3;
+  --eco-green-400: #93CFA0;
+  --eco-green-500: #7CBD8A;
+  --eco-green-600: #82A589;
+
+  --eco-turquoise-100: #D3EDE5;
+  --eco-turquoise-200: #93CFC0;
+  --eco-turquoise-300: #84C2B2;
+
+  --eco-grey: #636363;
+  --light-grey: #F0F0F0;
+
+  --eco-black: #033425;
+  --scrollbar-spacing: 4px;
+}
+html {
+  width: 300px;
+  height: 260px;
+}
+body {
+  background-color: #E6F2ED;
+  font-family: "Lexend", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+.lca-viz-lexend-reg {
+  font-weight: 400;
+}
+.lca-lexend {
+  font-family: "Lexend", sans-serif;
+}
+.lca-viz-close-button, .lca-viz-close-button-small {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.lca-viz-close-button-small svg {
+  width: 16px;
+  height: 16px;
+  stroke: #000;
+}
+.red-text {
+  color: red;
+}
+.grey-text {
+  color: var(--eco-grey);
+}
+.eco-green-text {
+  color: #39805F;
+}
+.icon-12 {
+  width: 12px;
+  height: 12px;
+}
+.icon-16 {
+  width: 16px;
+  height: 16px;
+}
+.icon-20 {
+  width: 20px;
+  height: 20px;
+}
+.icon-24 {
+  width: 24px;
+  height: 24px;
+}
+.margin-0 {
+  margin: 0px;
+}
+.margin-4 {
+  margin: 4px;
+}
+.margin-8 {
+  margin: 8px;
+}
+.margin-12 {
+  margin: 12px;
+}
+.lcz-mt-16 {
+  margin-top: 16px;
+}
+.lcz-mb-16 {
+  margin-bottom: 16px;
+}
+.br-4 {
+  border-radius: 4px;
+}
+.br-8 {
+  border-radius: 8px;
+}
+.br-16 {
+  border-radius: 16px;
+}
+.br-20 {
+  border-radius: 20px;
+}
+.pd-4 {
+  padding: 4px;
+}
+.pd-8 {
+  padding: 8px;
+}
+.pd-12 {
+  padding: 12px;
+}
+.pd-16 {
+  padding: 16px;
+}
+.pd-20 {
+  padding: 20px;
+}
+.fz-8 {
+  font-size: 8px;
+}
+.fz-12 {
+  font-size: 12px;
+}
+.fz-16 {
+  font-size: 16px;
+}
+.fz-20 {
+  font-size: 20px;
+}
+.fz-24 {
+  font-size: 24px;
+}
+.fz-32 {
+  font-size: 32px;
+}
+.cg-4 {
+  column-gap: 4px;
+}
+.cg-8 {
+  column-gap: 8px;
+}
+.cg-12 {
+  column-gap: 12px;
+}
+.eco-bold {
+  color: var(--eco-black);
+}
+.rg-4 {
+  row-gap: 4px;
+}
+.rg-8 {
+  row-gap: 8px;
+}
+.rg-12 {
+  row-gap: 12px;
+}
+
+.title-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.flex-stretch {
+  display: flex;
+  align-items: stretch;
+}
+.flex-column-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.lca-banner {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.master-lca {
+  padding-bottom: 16px;
+  border: solid 3px #52B788;
+}
+.title-container {
+  justify-content: center;
+  flex-grow: 3;
+}
+.title-container, .lca-banner {
+  gap: 8px;
+}
+.title-container, .lca-viz-close-container, .select-phone-container {
+  background-color: var(--eco-turquoise-100);
+}
+.lca-viz-close-container {
+  cursor: pointer;
+}
+
+li {
+  margin-top: 1em;
+}
+
+
+/* ? For popup.css ***********/
+
+.lca-viz-header-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  background-color: #C0D9C8;
+}
+.lca-mode-container {
+  background: #C0D9C8;
+  /* background: rgb(172,207,179);
+  background: linear-gradient(180deg, rgba(172,207,179, 0.5) 0%, rgba(172,207,179,0.5) 100%); */
+  /* trbl */
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 16px 18px 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.olive-text {
+  color: #223326;
+}
+.lca-mode-container.first {
+  margin-top: 68px;
+}
+.how-to {
+  background: #ACCFB3;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 12px 0 12px 0;
+  outline: none;
+  cursor: pointer;
+  border: transparent;
+}
+.how-to:hover {
+  transition: all 0.5s;
+  background: #97C2A0;
+}
+
+/* Toggle container */
+.toggle-container {
+  width: 40px;
+  height: 18px;
+  background-color: #F0F0F0;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  vertical-align: middle;
+}
+/* Toggle switch */
+.toggle-switch {
+  width: 16px;
+  height: 16px;
+  background-color: #909090;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+/* ? **********************/

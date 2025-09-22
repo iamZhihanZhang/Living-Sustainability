@@ -1,0 +1,101 @@
+{
+  "co2e": 16.15,
+  "co2e_unit": "kg",
+  "distance_km": 16.74,
+  "route": [
+    {
+      "type": "location",
+      "name": "Seattle, WA, United States",
+      "confidence_score": 1
+    },
+    {
+      "type": "leg",
+      "co2e": 16.15,
+      "co2e_unit": "kg",
+      "co2e_calculation_method": "ipcc_ar4_gwp100",
+      "source_trail": [
+        {
+          "data_category": "emission_factor",
+          "name": "Road freight - General",
+          "source": "GLEC",
+          "source_dataset": "Default Fuel Efficiency and CO2e Intensity Factors",
+          "year": "2019",
+          "region": "N_AMERICA",
+          "region_name": "North America"
+        }
+      ],
+      "transport_mode": "road",
+      "distance_km": 16.74,
+      "estimates": [
+        {
+          "co2e": 2.761,
+          "co2e_unit": "kg",
+          "co2e_calculation_method": "ar4",
+          "co2e_calculation_origin": "source",
+          "emission_factor": {
+            "name": "Road freight - General",
+            "activity_id": "freight_vehicle-vehicle_type_general-fuel_source_na-vehicle_weight_na-distance_uplift_included",
+            "id": "f3135d4d-1c31-46f3-99d6-3741fd3ae888",
+            "access_type": "public",
+            "source": "GLEC",
+            "source_dataset": "Default Fuel Efficiency and CO2e Intensity Factors",
+            "year": 2019,
+            "region": "N_AMERICA",
+            "category": "Road Freight",
+            "source_lca_activity": "well_to_tank",
+            "data_quality_flags": []
+          },
+          "constituent_gases": {
+            "co2e_total": 2.761,
+            "co2e_other": null,
+            "co2": null,
+            "ch4": null,
+            "n2o": null
+          },
+          "activity_data": {
+            "activity_value": 167.4,
+            "activity_unit": "tonne-km"
+          },
+          "audit_trail": "enabled"
+        },
+        {
+          "co2e": 13.39,
+          "co2e_unit": "kg",
+          "co2e_calculation_method": "ar4",
+          "co2e_calculation_origin": "source",
+          "emission_factor": {
+            "name": "Road freight - General",
+            "activity_id": "freight_vehicle-vehicle_type_general-fuel_source_na-vehicle_weight_na-distance_uplift_included",
+            "id": "b9ad6563-5a8c-434f-a619-f2698c34f2b6",
+            "access_type": "public",
+            "source": "GLEC",
+            "source_dataset": "Default Fuel Efficiency and CO2e Intensity Factors",
+            "year": 2019,
+            "region": "N_AMERICA",
+            "category": "Road Freight",
+            "source_lca_activity": "tank_to_wheel",
+            "data_quality_flags": []
+          },
+          "constituent_gases": {
+            "co2e_total": 13.39,
+            "co2e_other": null,
+            "co2": null,
+            "ch4": null,
+            "n2o": null
+          },
+          "activity_data": {
+            "activity_value": 167.4,
+            "activity_unit": "tonne-km"
+          },
+          "audit_trail": "enabled"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "name": "Bellevue, WA, United States",
+      "confidence_score": 1
+    }
+  ],
+  "notices": []
+}

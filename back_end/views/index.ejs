@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link href="index.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <section class="space-500 playfair">
+      <h2>Highlight the sentence below:</h2>
+      <p>I want to ship a package to Berkeley</p>
+    </section>
+
+    <section class="space-500 playfair">
+      <h2>Highlight the sentence below:</h2>
+      <p>I use an Nvidia RTX 4090 to train a transformer model, the training takes 24 h</p>
+    </section>
+
+    <section class="space-500 playfair">
+      <h2>Highlight the sentence below:</h2>
+      <p>
+        The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets. The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:5 mol% to the acid) of epoxy (EPON 828, Skygeek), adipic acid (Sigma Aldrich) and 1,5,7-triazabicyclo[4.4.0]dec-5-ene (TBD, Sigma Aldrich).
+      </p>
+    </section>
+
+    <section class="space-500 playfair">
+      <h2>Try your own text:</h2>
+      <form id="add-text-form">
+        <textarea style="width: 1000px; height: 400px;" class="textarea-lca"></textarea>
+        <button id="add-text" type="submit">Add Text</button>
+      </form>
+      <h2 class="your-text">Your Text: </h2>
+      <div class="text-container">
+
+      </div>
+    </section>
+
+    <section>
+      <h2>Please highlight each sentence below in the following order:</h2>
+      <p>
+        The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets. The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:5 mol% to the acid) of epoxy (EPON 828, Skygeek), adipic acid (Sigma Aldrich) and 1,5,7-triazabicyclo[4.4.0]dec-5-ene (TBD, Sigma Aldrich).
+      </p>
+      <p>I use a microwave to heat a cup of milk at 1000 W for 20 s. I like trains.</p>
+      <p>I am shipping a 30 lbs package from New York.</p>
+    </section>
+
+    <section>
+      <h2>Energy process information</h2>
+      <p>I am running my NVIDIA RTX 4070 for 24 hours.</p>
+      <p>I am using my gaming laptop in Seattle for 20 minutes now.</p>
+      <p>I use a microwave to heat a cup of milk at 1000 W for 20 s.</p>
+    </section>
+
+
+    <section>
+      <h2>Freight information</h2>
+      <p>I am shipping an item from LA to Seattle. My package is 50 kgs</p>
+      <p>I am shipping a 30 lbs package from New York.</p>
+      <p>I have a 3 kg gaming computer.</p>
+      <p>My friend took an 8-day road trip to move from the East Coast to Seattle in her car with her belongings and her cat.</p>
+    </section>
+
+    <section>
+      <h2>Related materials + Independent materials + Processes</h2>
+      <p>The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets. The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:5 mol% to the acid) of epoxy (EPON 828, Skygeek), adipic acid (Sigma Aldrich) and 1,5,7-triazabicyclo[4.4.0]dec-5-ene (TBD, Sigma Aldrich). The aluminum surface was treated with nitrogen plasma at a power of 45 W for a duration of 20 minutes, producing a carbon footprint of 0.4 kg CO2e per kWh.</p>
+    </section>
+
+    <section>
+      <h2>Processes</h2>
+      <p>The PDMS substrate was pretreated by oxygen plasma at 30 W for 15 s.</p>
+
+      <p>The aluminum surface was treated with nitrogen plasma at a power of 45 W for a duration of 20 minutes, producing a carbon footprint of 0.4 kg CO2e per kWh.</p>
+
+      <p>The PDMS substrate was prepared by mixing the PDMS prepolymer with the curing agent with a mixing ratio of 10:1 w/w.</p>
+    </section>
+
+    <section>
+      <h2>Raw Materials</h2>
+      <p>
+        The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets. The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:5 mol% to the acid) of epoxy (EPON 828, Skygeek), adipic acid (Sigma Aldrich) and 1,5,7-triazabicyclo[4.4.0]dec-5-ene (TBD, Sigma Aldrich). The aluminum surface was treated with nitrogen plasma at a power of 45 W for a duration of 20 minutes, producing a carbon footprint of 0.4 kg CO2e per kWh. 1 gram copper and 2 grams gold.
+      </p>
+    </section>
+
+
+    <h1>Test API</h1>
+    <form id="freightForm">
+      <label for="origin">Origin (location query):</label>
+      <input type="text" id="origin" name="origin" value="Seattle, Washington, 98154, United States" required>
+      <br>
+      <label for="destination">Destination (location query):</label>
+      <input type="text" id="destination" name="destination" value="Suginami City, Tokyo, 168-0063, Japan" required>
+      <br>
+      <label for="weight">Cargo Weight:</label>
+      <input type="number" id="weight" name="weight" value="10" required>
+      <br>
+      <label for="weightUnit">Weight Unit:</label>
+      <input type="text" id="weightUnit" name="weightUnit" value="t" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="apiResponse"></p>
+
+    <br>
+    <h1>ChatGPT Text Evaluation Test</h1>
+    <div>
+      <label for="inputText">Enter text to evaluate:</label><br>
+      <textarea id="inputText" rows="5" cols="40"></textarea><br><br>
+      <button id="submitBtn">Submit</button>
+    </div>
+    <h2>Response:</h2>
+    <div id="responseBox" style="border:1px solid #000; padding:10px;">
+      <p id="responseText">The evaluated response will appear here.</p>
+    </div>
+    <!--  -->
+
+    <br>
+    <h1>ChatGPT Material Emissions Test</h1>
+    <div>
+      <label for="inputText">Enter raw materials to evaluate:</label><br>
+      <textarea id="inputText-rawM" rows="2" cols="40"></textarea><br><br>
+      <button id="submitBtn-rawM">Submit</button>
+    </div>
+    <h2>Response:</h2>
+    <div id="responseBox-rawM" style="border:1px solid #000; padding:10px;">
+      <p id="responseText-rawM">The evaluated response will appear here.</p>
+    </div>
+
+    <br>
+    <p>Get Google Distance Matrix API</p>
+    <form id="google-distance-matrix">
+      <label for="google-from">From:</label>
+      <input type="text" id="google-from">
+      <label for="google-to">To:</label>
+      <input type="text" id="google-to">
+      <input type="submit" value="Submit">
+    </form>
+    <pre id="distance-matrix-response"></pre>
+
+    <script src="/index.js"></script>
+</body>
+</html>

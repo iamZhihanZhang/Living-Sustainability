@@ -1,0 +1,582 @@
+:root {
+  --eco-green-100: #E1EDE8;
+  --eco-green-200: #C3E3CA;
+  --eco-green-300: #ABD2B3;
+  --eco-green-400: #93CFA0;
+  --eco-green-500: #7CBD8A;
+  --eco-green-600: #82A589;
+
+  --eco-turquoise-100: #D3EDE5;
+  --eco-turquoise-200: #93CFC0;
+  --eco-turquoise-300: #84C2B2;
+
+  --eco-grey: #636363;
+  --light-grey: #F0F0F0;
+  --light-green: #E5F3EC;
+
+  --eco-black: #033425;
+  --scrollbar-spacing: 4px;
+
+  --eco-text-green: #124533;
+  --eco-text-green-background: #99E29B;
+  --eco-text-red: #A91910;
+  --eco-text-red-background: #FCD2C1;
+
+  --btn-disabled-background: #C1C1C1;
+  --btn-disabled-text: #636363;
+}
+
+.lca-viz-lca-logo {
+  background-color: transparent !important;
+}
+
+.lca-viz-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--eco-turquoise-100);
+  /* top, right, bottom, left */
+  border-radius: 8px 8px 0 0;
+  justify-content: space-between;
+}
+.lca-viz-header-title {
+  margin-left: 4px;
+}
+
+#lca-viz-map {
+  position: absolute;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  z-index: 999999;
+  background-color: white;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  cursor: grab;
+  transition: opacity 0.5s ease, width 0.5s ease;
+  padding-top: 64px; /* Add enough padding for the header */
+  max-height: 80vh;
+  max-width: 700px;
+  overflow-y: scroll;
+}
+
+#lca-viz-map.lca-viz-map-hidden, #lca-viz-question-container.lca-viz-c-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#lca-viz-map.lca-viz-map-visible, #lca-viz-question-container.lca-viz-c-visible {
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
+}
+
+#lca-viz-carbon-chart {
+  max-width: 420px;
+  max-height: 265px;
+}
+.lca-viz-canvas {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  max-width: 700px;
+}
+
+.lca-viz-slider-container {
+  width: 100%;
+  text-align: center;
+}
+.lca-viz-param-subtext {
+  color: var(--eco-grey);
+}
+
+/* ~ Saving this for now, for the <input> implement of #parameter-2 */
+/* <input id="parameter-2" type="number" value="${parameter}" */
+/* <span id="${paramId}">1</span> */
+.lca-viz-parameter-text {
+  border: none;
+  outline: none;
+  background: #E2EBE7;
+  font-size: inherit;
+  color: black;
+  border-radius: 2px;
+  text-align: center;
+  width: 3em;
+  font-family: "Lexend";
+}
+.lca-viz-parameter-text::-webkit-inner-spin-button,
+.lca-viz-parameter-text::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.lca-viz-parameter-text[type=number] {
+  -moz-appearance: textfield;
+}
+
+.lca-viz-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.lca-viz-close-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
+  z-index: 10;
+  background-color: transparent;
+}
+
+.lca-viz-highlight {
+  color: #4DAB7F;
+  /* background-color: yellow; */
+}
+.lca-viz-inline, .lca-viz-param-target {
+  display: inline;
+}
+.lca-lexend {
+  font-family: "Lexend", sans-serif;
+}
+.lca-viz-fnt-inherit {
+  font-family: inherit;
+}
+
+#lca-viz-action-btn-text {
+  font-size: 14px;
+  color: #585858;
+}
+
+.lca-viz-previously-highlighted {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.lca-viz-hidden {
+  display: none !important;
+}
+
+.lca-viz-mark {
+  background-color: var(--eco-green-100);
+  transition: all 0.5s;
+}
+
+.lca-viz-no-underline {
+  text-decoration: none;
+}
+
+.lca-viz-param-bold {
+  color: #52B788;
+}
+
+/* #lca-viz-action-btn */
+#lca-viz-action-btn-container {
+  position: absolute;
+  z-index: 2147483647;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#lca-viz-action-btn {
+  border: 1.6px solid #52B788;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  justify-content: center;
+}
+/* #lca-viz-action-btn.lca-viz-show {
+  opacity: 1;
+  visibility: visible;
+} */
+.lca-viz-interactable {
+  cursor: pointer;
+}
+
+.lca-viz-green-hover:hover {
+  background-color: var(--light-green);
+  transition: all 0.5s;
+}
+.lca-viz-non-interactable {
+  pointer-events: none;
+}
+
+/* * CSS Rule for the up-and-down btn ONLY */
+.lca-viz-param {
+  justify-content: space-between;
+  background-color: #EEF2F0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.lca-viz-param-container > *, .lca-viz-independent-container > *, .lca-viz-processes-container > * {
+  margin-top: 12px;
+}
+.lca-viz-param-fill {
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.lca-viz-param-fill, .lca-viz-total-emissions {
+  background-color: #EEF2F0;
+}
+.lca-viz-special-text-container-2 {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  column-gap: 4px;
+  user-select: none
+}
+.lca-viz-special-text-2 {
+  display: flex;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 4px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-special-text-intext {
+  display: flex;
+  outline: 2px solid #39805F;
+  border-radius: 5px;
+  padding: 5px 5px 5px 10px;
+  margin: 4px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-up-down-btn-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+}
+.lca-viz-up-down-btn-container-intext {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}
+.lca-viz-up-down-btn {
+  padding: 0px 6px 0px 6px;
+  box-shadow: 0px 0.5px 3px 0px rgba(0, 0, 0, 0.25);
+}
+.lca-viz-active {
+  cursor: pointer;
+  background-color: white;
+  color: #39805F;
+}
+.lca-viz-active:hover {
+  background-color: #E2EBE7;
+  transition: 0.5s all;
+}
+.lca-viz-inactive {
+  cursor: not-allowed;
+  background-color: #F5F5F5;
+  color: grey;
+}
+.lca-viz-inactive-st {
+  background-color: #F5F5F5;
+}
+.lca-viz-active-st {
+  background-color: white;
+}
+.lca-viz-up-down-btn-container .lca-viz-up-down-btn svg, .lca-viz-up-down-btn-container-intext .lca-viz-up-down-btn svg {
+  width: 0.7em;
+  height: 0.7em;
+}
+.lca-viz-eye-off, .lca-viz-eye-on {
+  color: #39805F;
+  padding: 5px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.lca-viz-eye-off {
+  background-color: #F5F5F5;
+}
+.lca-viz-em-regular {
+  width: 1em;
+  height: 1em;
+}
+.lca-viz-display-chart-btn {
+  width: 1.5em;
+  height: 1.5em;
+}
+/* * CSS Rule for the up and down btn ONLY */
+
+.off-lca-btn {
+  position: relative;
+  top: -6px;
+  cursor: pointer;
+}
+
+#lca-viz-end {
+  text-decoration: none !important;
+  background-color: unset !important;
+}
+
+
+/* & CSS Rule for Ratio part */
+.lca-viz-ratio-container {
+  position: relative;
+  outline: 1px solid #52B788;
+}
+.lca-viz-ratio-text {
+  /* top, right, bottom, left */
+  padding: 4px 8px 4px 8px;
+}
+.lca-viz-text-source {
+  color: #575757;
+  margin-left: 4px;
+}
+.lca-viz-empty-space {
+  width: 100px;
+}
+.lca-viz-ratio-control {
+  text-align: center;
+  /* height: 100px; */
+}
+.control-section {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bg-eef2f0 {
+  background-color: #EEF2F0;
+}
+.bg-d2ead7 {
+  background-color: #D2EAD7;
+}
+
+.lca-viz-param-toggle-off > * {
+  margin-top: 12px;
+}
+
+.lca-viz-param-toggle-on {
+  /* width: 0; */
+  transition: width 0.5s ease;
+}
+.lca-viz-ratio-detail-text {
+  /* height: 0px; */
+  transition: height 0.5s ease;
+}
+
+  /* *CSS Rule for toggle switch */
+  .lca-viz-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .lca-viz-toggle-container {
+    position: relative;
+    width: 32px;
+    height: 13.5px;
+  }
+  .lca-viz-toggle-checkbox {
+    display: none;
+  }
+  .lca-viz-toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    outline: 1px solid #52B788;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .lca-viz-toggle-label::after {
+    content: "";
+    position: absolute;
+    top: 1.5px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #52B788;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+  .lca-viz-toggle-checkbox:checked + .lca-viz-toggle-label {
+    background-color: #D3EDE5;
+    outline: none;
+  }
+  .lca-viz-toggle-checkbox:checked + .lca-viz-toggle-label::after {
+    transform: translateX(17px);
+  }
+  /* *CSS Rule for toggle switch */
+
+/* & CSS Rule for Ratio part */
+
+
+
+/* * New Question UI *****************************/
+.lca-viz-header {
+  background-color: #D3EDE5;
+}
+
+.lca-viz-header, .lca-viz-header-2, .lca-viz-header-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+}
+
+.lca-viz-header {
+  cursor: grab;
+}
+
+.lca-viz-header, .lca-viz-header-2 {
+  border-radius: 8px 8px 0 0;
+}
+
+.lca-viz-header-2, .lca-viz-header-3 {
+  background-color: #C0D9C8;
+}
+
+#lca-viz-question-container {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 2147483647;
+  opacity: 0;
+
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #E6F2ED;
+  padding: 20px;
+  pointer-events: none; /* Prevents user interaction */
+  max-width: 380px;
+  padding-top: 64px;
+  transition: all 0.5s;
+  overflow: hidden;
+  font-family: "Lexend", sans-serif;
+
+  word-wrap: break-word;  /* Handles long words */
+  overflow-wrap: break-word;  /* Modern equivalent */
+  white-space: normal;  /* Allow line breaks */
+}
+
+.lca-viz-lcz-1 {
+  display: flex;
+  /* height: 80%; */
+  align-items: stretch;
+}
+
+.lca-viz-vl {
+  border-left: 3px solid #52B788;
+  margin-right: 16px;
+}
+
+.lca-viz-t-source-height {
+  /* height: 32px; */
+  height: auto;
+}
+
+.lca-viz-package-parent {
+  width: 142px;
+}
+
+.lca-viz-duration-parent {
+  width: 180px;
+}
+
+.lca-viz-question-from-to, .lca-viz-question-weight, .lca-viz-question-unit {
+  border: none;
+}
+
+.lca-viz-question-expand {
+  /* height: 460px; */
+  /* height: 40px; */
+  transition: all 0.5s;
+}
+
+.lca-viz-question-form {
+  flex-grow: 1;
+  align-content: center;
+}
+
+.lca-viz-question-form label {
+  margin-bottom: 8px;
+}
+
+.lca-viz-question-form input {
+  font-family: 'Lexend', sans-serif;
+  width: 90%;
+  /* trbl */
+  padding: 14px 12px 14px 12px;
+}
+
+.lca-viz-package-unit-container {
+  background-color: white;
+  align-content: center;
+  padding: 0 12px 0 12px;
+}
+
+.lca-viz-question-unit:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.lca-viz-question-weight {
+  text-align: center;
+}
+
+.lca-viz-input-error {
+  color: #F70000;
+}
+
+.lca-viz-expand-collapse-container {
+  position: absolute;
+  align-content: center;
+  height: 32px;
+  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--eco-green-400);
+  z-index: 50;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.lca-viz-expand-collapse-container:hover {
+  transition: all 0.5s;
+  cursor: pointer;
+  background: #87c094;
+}
+
+.lca-viz-question-from-to.invalid, .lca-viz-question-weight.invalid {
+  border: 1px solid red;
+}
+.lca-viz-question-from-to.valid, .lca-viz-question-weight.valid {
+  border: none;
+}
+.lca-viz-question-from-to.read-only {
+  border: 1px solid #39805F;
+  color: #39805F;
+  background-color: #DCE7E2;
+}
+
+/* ! Combine this with .lca-viz-calculate-container.disabled */
+  .lca-viz-calculate-container-2 {
+    margin-top: 24px;
+    background-color: var(--eco-green-400);
+  }
+  .lca-viz-calculate-container-2.valid {
+    cursor: pointer;
+    color: black;
+    transition: all 0.5s;
+  }
+  .lca-viz-calculate-container-2.invalid {
+    background-color: var(--btn-disabled-background);
+    color: var(--btn-disabled-text);
+  }
+  .lca-viz-calculate-container-2.valid:hover {
+    background-color: #87bd92;
+  }
+  .lca-viz-calculate-container-2.invalid:hover {
+    cursor: not-allowed;
+    transition: none;
+  }
+  .lca-viz-calculate-btn-txt, .lca-viz-calculate-btn-txt-2 {
+    text-align: center;
+  }
+/* ******************************************* */

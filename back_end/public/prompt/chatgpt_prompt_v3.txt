@@ -1,0 +1,455 @@
+You will be provided with input text. Your task is to extract detailed information relevant to Life Cycle Assessment (LCA) and present it in a structured JSON format as specified below.
+For each raw material and process parameter, indicate if the value was "present" (directly mentioned in the text) or "inferred" (calculated or reasonably assumed based on context).
+The raw material name, represented by the "name" field, must not include any parentheses whatsoever.
+
+Follow these steps:
+
+### 1. **Identify Raw Materials**
+
+   - **Raw Material Extraction:** Determine if the input text mentions any raw materials along with their associated parameters (e.g., amount, concentration, or ratios) that influence carbon emissions.
+
+### 2. **Handle Different Raw Material Cases**
+
+   - **Independent Raw Materials:** For materials listed independently, extract each with its amount and unit. If amount is not given, the default value should be 1. Specify if each parameter was **"present"** in the text or **"inferred."**
+     - **Example:** For text "1 gram copper and 2 grams gold," output as:
+     ```json
+     {
+       "raw_materials": {
+         "independent_materials": [
+           {
+             "name": "copper",
+             "amount": 1,
+             "unit": "g",
+             "amount_source": "present",
+             "unit_source": "present",
+             "carbon_emission_factor": "0.41 g CO₂-eq per g",
+             "index": 0
+           },
+           {
+             "name": "gold",
+             "amount": 2,
+             "unit": "g",
+             "amount_source": "present",
+             "unit_source": "present",
+             "carbon_emission_factor": "30000 g CO₂-eq per g",
+             "index": 1
+           }
+         ]
+       }
+     }
+     ```
+
+   - **Related Raw Materials with Fixed Ratios:** For materials in a specified ratio without units, assign a reasonable unit (e.g., grams) and label as **"inferred"** if not directly mentioned.
+     - **Example:** For text "A typical recipe involves a glycerin: PVA powder: de-ionized water ratio of 1:6:30," output as:
+     ```json
+     {
+       "raw_materials": {
+         "related_materials": [{
+           "text_source": "glycerin: PVA powder: de-ionized water ratio of 1:6:30",
+           "ratio": [
+             {
+               "name": "glycerin",
+               "ratio_value": 1,
+               "unit": "g",
+               "ratio_value_source": "present",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "0.3 g CO₂-eq per g",
+               "index": 0
+             },
+             {
+               "name": "PVA powder",
+               "ratio_value": 6,
+               "unit": "g",
+               "ratio_value_source": "present",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "2.47 g CO₂-eq per g",
+               "index": 1
+             },
+             {
+               "name": "de-ionized water",
+               "ratio_value": 30,
+               "unit": "g",
+               "ratio_value_source": "present",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "0 g CO₂-eq per g",
+               "index": 2
+             }
+           ]
+         }]
+       }
+     }
+     ```
+
+   - **Molecular Mass-Based Ratios:** If ratios are provided based on molecular mass, perform the following steps:
+     1. Identify each component and its molecular weight.
+     2. Apply the stoichiometric ratio provided.
+     3. Calculate the mass for each component and summarize the weight ratio in grams.
+     4. Label parameters as **"present"** or **"inferred"** depending on the input text.
+     - **Example:** For "The vitrimer polymer was prepared by mixing a stoichiometric ratio (1:1:0.05 mol%) of epoxy (EPON 828), adipic acid, and TBD," assuming molecular weights of EPON 828 (340 g/mol), adipic acid (146.14 g/mol), and TBD (139.18 g/mol), output as:
+     ```json
+     {
+       "raw_materials": {
+         "related_materials": [{
+           "text_source": "(1:1:0.05 mol%) of epoxy (EPON 828), adipic acid, and TBD",
+           "ratio": [
+             {
+               "name": "adipic acid",
+               "ratio_value": 146.14,
+               "unit": "g",
+               "ratio_value_source": "present",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "3.6 g CO₂-eq per g",
+               "index": 0
+             },
+             {
+               "name": "EPON 828",
+               "ratio_value": 340,
+               "unit": "g",
+               "ratio_value_source": "present",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "2 g CO₂-eq per g",
+               "index": 1
+             },
+             {
+               "name": "TBD",
+               "ratio_value": 6.96,
+               "unit": "g",
+               "ratio_value_source": "inferred",
+               "unit_source": "inferred",
+               "carbon_emission_factor": "1 g CO₂-eq per g",
+               "index": 2
+             }
+           ]
+         }]
+       }
+     }
+     ```
+
+### 3. **Extract Energy Consumption Information**
+
+   - Identify any processes with power usage and time duration.
+   - Calculate energy usage step-by-step:
+     1. **Power (watts) × Time (seconds) ** for energy in joules (J).
+     2. **Convert to kWh** by dividing by 3,600,000.
+     3. Label parameters as **"present"** if provided in the text or **"inferred"** if estimated.
+     4. If the unit of power or time has been converted, include the original values in the fields "power_original", "power_original_unit", "time_original", "time_original_unit"
+   - **Example:** For text "The PDMS substrate was pretreated by oxygen plasma at 30 W for 15 s," output as:
+     ```json
+     {
+      "processes": [
+        {
+           "name": "oxygen plasma treatment",
+           "power": 30,
+           "power_unit": "W",
+           "power_original": 30,
+           "power_original_unit": "W",
+           "time": 15,
+           "time_unit": "s",
+           "time_original": 15,
+           "time_original_unit": "s",
+           "power_source": "present",
+           "time_source": "present",
+           "energy": 0.000125,
+           "energy_unit": "kWh",
+           "energy_source": "calculated",
+           "carbon_emission_factor": "500 g CO₂-eq per kWh",
+           "index": 0
+         }
+      ]
+    }
+     ```
+
+### 4. **Multiple Raw Materials and Energy Consumption Factors**
+
+   - If multiple raw materials, ratios, or energy processes are present, include each in the JSON output, marking each parameter as **"present"** or **"inferred."**
+
+### 5. **No Relevant Information Found**
+
+   - If no relevant LCA information (raw materials or energy consumption) is found, return:
+     ```
+     null
+     ```
+
+### 6. **Carbon Emission Factor**
+
+   - Based on your up-to-date knowledge, include a carbon emission factor for each raw material and process.
+   For example, PVA powder has a factor of 2.47 g CO₂-eq per g. Multiply energy processes by CO₂ per kWh if specified.
+
+---
+
+### JSON Format
+
+Organize output in this JSON structure:
+
+```json
+{
+  "raw_materials": {
+    "independent_materials": [
+      {
+        "name": "Material A",
+        "amount": 1,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "<value> g CO₂-eq per g",
+        "index": 0
+      },
+      {
+        "name": "Material B",
+        "amount": 2,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "<value> g CO₂-eq per g",
+        "index": 1
+      }
+    ],
+    "related_materials": [{
+      "text_source": "<the text reference>",
+      "ratio": [
+        {
+          "name": "Material C",
+          "ratio_value": 1,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "<value> g CO₂-eq per g",
+          "index": 2
+        },
+        {
+          "name": "Material D",
+          "ratio_value": 6,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "<value> g CO₂-eq per g",
+          "index": 3
+        },
+        {
+          "name": "Material E",
+          "ratio_value": 30,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "<value> g CO₂-eq per g",
+          "index": 4
+        }
+      ]
+    }]
+  },
+  "processes": [
+    {
+      "name": "Process A",
+      "power": 50,
+      "power_unit": "W",
+      "power_original": 50,
+      "power_original_unit": "W",
+      "time": 20,
+      "time_unit": "s",
+      "time_original": 20,
+      "time_original_unit": "s",
+      "power_source": "present",
+      "time_source": "present",
+      "energy": 0.0002778,
+      "energy_unit": "kWh",
+      "energy_source": "calculated",
+      "carbon_emission_factor": "<value> g CO₂-eq per kWh",
+      "index": 5
+    }
+  ]
+}
+```
+Order items in this sequence: start with raw_materials, placing related_materials first, followed by independent_materials. After all raw_materials items, proceed with processes.
+Each material or process should be assigned a unique, sequential index that increments continuously across all sections. Start from 0 for the first item in any section (e.g., related_materials, independent_materials, or processes) and increment by 1 for each subsequent entry, regardless of the section. For example, if raw_materials contains two items with indexes 0 and 1, the first item in processes should then be assigned an index of 2.
+
+### Examples
+
+Use the following examples to guide your response formatting.
+
+---
+
+#### Example 1: Independent Raw Materials
+
+**Input Text:**
+"1 gram copper and 2 grams glass were used in the process."
+
+**Expected Output:**
+```json
+{
+  "raw_materials": {
+    "independent_materials": [
+      {
+        "name": "copper",
+        "amount": 1,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "2.77 g CO₂-eq per g",
+        "index": 0
+      },
+      {
+        "name": "glass",
+        "amount": 2,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "0.85 g CO₂-eq per g",
+        "index": 1
+      }
+    ]
+  }
+}
+```
+
+---
+
+#### Example 2: Related Raw Materials with Fixed Ratio
+
+**Input Text:**
+"For a durable coating, a nickel: PVA powder: de-ionized water ratio of 1:6:30 was prepared."
+
+**Expected Output:**
+```json
+{
+  "raw_materials": {
+    "related_materials": {
+      "text_source": "a nickel: PVA powder: de-ionized water ratio of 1:6:30",
+      "ratio": [
+        {
+          "name": "nickel",
+          "ratio_value": 1,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "11.53 g CO₂-eq per g",
+          "index": 0
+        },
+        {
+          "name": "PVA powder",
+          "ratio_value": 6,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "2.47 g CO₂-eq per g",
+          "index": 1
+        },
+        {
+          "name": "de-ionized water",
+          "ratio_value": 30,
+          "unit": "g",
+          "ratio_value_source": "present",
+          "unit_source": "inferred",
+          "carbon_emission_factor": "0.00080 g CO₂-eq per g",
+          "index": 2
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
+#### Example 3: Process with Energy Consumption
+
+**Input Text:**
+"The sample was treated with oxygen plasma at 50 W for 20 seconds."
+
+**Expected Output:**
+```json
+{
+  "processes": [
+    {
+      "name": "oxygen plasma treatment",
+      "power": 50,
+      "power_unit": "W",
+      "power_original": 50,
+      "power_original_unit": "W",
+      "time": 20,
+      "time_unit": "s",
+      "time_original": 20,
+      "time_original_unit": "s",
+      "power_source": "present",
+      "time_source": "present",
+      "energy": 0.0002778,
+      "energy_unit": "kWh",
+      "energy_source": "calculated",
+      "carbon_emission_factor": "431 g CO₂-eq per kWh",
+      "index": 0
+    }
+  ]
+}
+```
+
+---
+
+#### Example 4: Mixed Case with Independent Raw Materials and Process
+
+**Input Text:**
+"The mixture used 1 gram silicone and 2 grams ABS. It was then cured with a heat lamp at 75 W for 60 seconds."
+
+**Expected Output:**
+```json
+{
+  "raw_materials": {
+    "independent_materials": [
+      {
+        "name": "silicone",
+        "amount": 1,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "2.67 g CO₂-eq per g",
+        "index": 0
+      },
+      {
+        "name": "ABS",
+        "amount": 2,
+        "unit": "g",
+        "amount_source": "present",
+        "unit_source": "present",
+        "carbon_emission_factor": "3.46 g CO₂-eq per g",
+        "index": 1
+      }
+    ]
+  },
+  "processes": [
+    {
+      "name": "heat lamp curing",
+      "power": 75,
+      "power_unit": "W",
+      "power_original": 75,
+      "power_original_unit": "W",
+      "time": 60,
+      "time_unit": "s",
+      "time_original": 1,
+      "time_original_unit": "min",
+      "power_source": "present",
+      "time_source": "present",
+      "energy": 0.00125,
+      "energy_unit": "kWh",
+      "energy_source": "calculated",
+      "carbon_emission_factor": "431 g CO₂-eq per kWh",
+      "index": 2
+    }
+  ]
+}
+```
+
+---
+
+#### Example 5: Null Case
+
+**Input Text:**
+"The product was inspected for quality and displayed."
+
+**Expected Output:**
+```
+null
+```
+
+---
+
+Follow this structure closely to ensure each element is extracted and represented accurately.
+Reason step-by-step for each calculation and conversion. Return all values with appropriate units for clarity and consistency. Indicate clearly whether parameters are "present" or "inferred".
+Each JSON output should be cleanly organized and consistent with the structure above.

@@ -1,0 +1,40 @@
+You will be provided with a paragraph of input text. Your task is to extract the main sources of raw materials and production processes mentioned in the text, and then transform the information into a single-line JSON without whitespaces suitable for Life Cycle Assessment (LCA). Specifically:
+
+1. Identify Raw Materials: Determine if the input text mentions any raw materials suitable for life cycle assessment (LCA). Potential raw materials can be minerals, fossil fuels, metals, biomass, and water.
+
+2. Multiple Raw Materials: If the input text contains more than one raw material, extract all of them into an array. For example:
+
+Input text:
+"The GFRV composite was constructed from two parts: vitrimer polymer and woven glass fibre sheets."
+Expected output:
+{"data": {"raw_materials": ["vitrimer polymer”, “woven glass fibre sheets"]}}
+
+3. No Raw Materials Found: If no raw materials relevant to LCA are identified, simply return null:
+{"data": null}
+
+Here are the examples of different input text, and what their expected output should be like:
+
+Example 1
+Input text:
+"In this work, the functional unit is 1 kg for each MLCCs and TECs with capacitance of 1 µF and all of the inventories generated are converted by aligning them to conform to the functional unit. The motivation for this work pertains to climate change challenges due to greenhouse gas emissions."
+Expected output:
+{"data": {"raw_materials": "MLCC"}}
+
+Example 2
+Input text:
+"The results are given per 1 m2 ready-to-use PCB."
+Expected output:
+{"data": {"raw_materials": "PCB"}}
+
+Example 3
+Input text:
+"The EPA has published bill of primary materials for 17 inches CRT monitor and 15 inches LCD monitor. "
+Expected output:
+{"data": {"raw_materials": "CRT monitor"}}
+
+Example 4
+Input text:
+"The functional unit is expressed in terms of one assembled 5-inch AMOLED display at the AMOLED manufacturing site in South Korea."
+Expected output:
+{"data": {"raw_materials": "AMOLED display"}}
+

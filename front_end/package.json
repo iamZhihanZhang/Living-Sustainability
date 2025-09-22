@@ -1,0 +1,71 @@
+{
+	"name": "lca-extension-cli",
+	"description": "Creates a carbon footprint visualization based on relevant text information of mobile devices.",
+	"version": "0.0.1",
+	"homepage": "http://chrome.google.com/webstore",
+	"author": "Pu Thavikulwat",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fudgelgentle/lca-extension-cli"
+	},
+	"scripts": {
+		"start": "xt-build -e dev -w",
+		"start:firefox": "xt-build -e dev -p firefox -w",
+		"build": "xt-build -e prod",
+		"build:firefox": "xt-build -e prod -p firefox",
+		"clean": "xt-clean",
+		"docs": "xt-docs",
+		"test": "xt-test",
+		"coverage": "nyc --reporter=lcov npm run test",
+		"sync": "xt-sync"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		]
+	},
+	"eslintIgnore": [
+		"test/**/*"
+	],
+	"devDependencies": {
+		"autoprefixer": "^10.4.19",
+		"esdoc-standard-plugin": "^1.0.0",
+		"extension-cli": "^1.2.4",
+		"postcss-cli": "^11.0.0",
+		"tailwindcss": "^3.4.4"
+	},
+	"xtdocs": {
+		"source": {
+			"include": [
+				"README.md",
+				"src"
+			]
+		}
+	},
+	"xtbuild": {
+		"js_bundles": [
+			{
+				"name": "content",
+				"src": "./src/content.js"
+			},
+			{
+				"name": "popup-content",
+				"src": "./src/popup-content.js"
+			},
+			{
+				"name": "material-utils",
+				"src": "./src/material-utils.js"
+			},
+			{
+				"name": "popup",
+				"src": "./src/popup.js"
+			}
+		]
+	},
+	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.16.8",
+		"chart.js": "^4.4.3",
+		"chartjs-plugin-datalabels": "^2.2.0",
+		"express": "^4.19.2"
+	}
+}

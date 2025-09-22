@@ -32,6 +32,8 @@ These variables are required for full functionality:
 - `CLIMATIQ_API_KEY`: used for `/api/freight` and `/api/cloud` emission calculations.
 - `GOOGLE_API_KEY`: used for `/api/travel-time` via Google Distance Matrix.
 - `MONGO_URI`: MongoDB connection string for device data (database `phone-carbon-data`).
+- `GOOGLE_CS_KEY`: Google Custom Search API key used in `utils/search.js` to find public Product Carbon Footprint reports.
+- `GOOGLE_CS_CX`: Google Custom Search Engine ID (cx) used alongside `GOOGLE_CS_KEY`.
 
 Set them locally in `.env` (and export or preload), or as secrets in your deployment environment.
 

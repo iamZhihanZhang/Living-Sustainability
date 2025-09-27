@@ -4,7 +4,7 @@
 
 Follow these steps to install and run the extension locally:
 
-1. **Install dependencies:** Run `npm install extension-cli` in the root directory.
+1. **Install dependencies:** Run `npm install` and `npm install extension-cli` in the root directory.
 2. **Build the extension:** Run `npx xt-build` in the root directory. This command generates a `release.zip` containing the packaged extension.
 3. **Extract the build:** Unzip the generated `release.zip` to create a `release` folder.
 4. **Load in Chrome:**

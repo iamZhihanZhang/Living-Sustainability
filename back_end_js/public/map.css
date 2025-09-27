@@ -1,0 +1,10 @@
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#google-maps-air, #google-maps-ground  {
+  height: 160px;
+  border-radius: 8px;
+}

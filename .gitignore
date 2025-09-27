@@ -45,38 +45,6 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Logs
-logs/
-*.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage
-.grunt
-
-# Bower dependency directory
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons
-build/Release
-
-# Dependency directories
-jspm_packages/
-
 # TypeScript cache
 *.tsbuildinfo
 
@@ -121,15 +89,10 @@ dist
 
 # Gatsby files
 .cache/
-public
 
 # Storybook build outputs
 .out
 .storybook-out
-
-# Temporary folders
-tmp/
-temp/
 
 # OS generated files
 .DS_Store
@@ -139,20 +102,3 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Docker
-.dockerignore
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Backup files
-*.bak
-*.backup
-*.old
-
-# Test files
-test-results/
-coverage/

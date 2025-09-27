@@ -1,0 +1,183 @@
+{
+  "data": [
+    {
+      "device": "Huawei P50",
+      "base_co2e": "79",
+      "source": "https://www-file.huawei.com/-/media/corp2020/pdf/sustainability/others/huawei-consumer-business-sustainability-progress-report-2022-en.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 79
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 85
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 97
+        }
+      ]
+    },
+    {
+      "device": "iPhone 13",
+      "base_co2e": 64,
+      "source": "https://www.apple.com/environment/pdf/products/iphone/iPhone_13_PER_Sept2021.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 64
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 70
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 82
+        }
+      ]
+    },
+    {
+      "device": "iPhone 14 Pro",
+      "base_co2e": "65 kg CO2-eq",
+      "source": "https://www.apple.com/environment/pdf/products/iphone/iPhone_14_Pro_PER_Sept2022.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 65
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 71
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 83
+        },
+        {
+          "storage": "1 TB",
+          "co2e": 107
+        }
+      ]
+    },
+    {
+      "device": "iPhone 15 Pro",
+      "base_co2e": 66,
+      "source": "https://www.apple.com/environment/pdf/products/iphone/iPhone_15_Pro_and_iPhone_15_Pro_Max_Sept2023.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 66
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 72
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 84
+        },
+        {
+          "storage": "1 TB",
+          "co2e": 108
+        }
+      ]
+    },
+    {
+      "device": "Galaxy Z Flip5",
+      "base_co2e": 54.6,
+      "source": "https://www.samsung.com/global/sustainability/media/pdf/Galaxy_Z_Flip5_Environmental_Report_EN_2307.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 55
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 61
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 73
+        }
+      ]
+    },
+    {
+      "device": "Oppo Find N2 Flip",
+      "base_co2e": "79",
+      "source": "https://www.oppo.com/content/dam/oppo/common/mkt/footer/2022-OPPO-Sustainability-Report-EN.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 79
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 85
+        }
+      ]
+    },
+    {
+      "device": "Samsung Galaxy S23 Ultra",
+      "base_co2e": 70.6,
+      "source": "https://www.samsung.com/global/sustainability/media/pdf/Galaxy_S23_Ultra_Environmental_Report_EN_230201.pdf",
+      "specs": [
+        {
+          "storage": "256 GB",
+          "co2e": 71
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 83
+        },
+        {
+          "storage": "1 TB",
+          "co2e": 107
+        }
+      ]
+    },
+    {
+      "device": "Google Pixel 8 Pro",
+      "base_co2e": "79 kg",
+      "source": "https://www.gstatic.com/gumdrop/sustainability/pixel-8-pro-product-enviromental-report.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 79
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 85
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 97
+        }
+      ]
+    },
+    {
+      "device": "iPhone 16 Pro",
+      "base_co2e": 66,
+      "source": "https://www.apple.com/environment/pdf/products/iphone/iPhone_16_Pro_and_iPhone_16_Pro_Max_PER_Sept2024.pdf",
+      "specs": [
+        {
+          "storage": "128 GB",
+          "co2e": 66
+        },
+        {
+          "storage": "256 GB",
+          "co2e": 72
+        },
+        {
+          "storage": "512 GB",
+          "co2e": 84
+        },
+        {
+          "storage": "1 TB",
+          "co2e": 108
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+body {
+  padding: 50px;
+  font-family: "Inter", sans-serif;
+}
+
+section {
+  background-color: #eaf4f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  color: black;
+}
+
+::selection {
+  background-color: #b3d4fc;
+  color: black;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name
+<weight>: Use a value from 300 to 900 */
+
+.playfair {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-500 {
+  margin-bottom: 500px;
+  margin-right: 500px;
+  background-color: transparent !important;
+  font-size: 20px;
+}
+
+.container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20vh;
+  background-color: rgb(36 24 91);
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.image {
+  height: 50vh;
+}
+
+.counter {
+  padding: 10vh;
+  font-size: 40vh;
+  color: white;
+}
+
+.textarea-lca {
+  font-size: 24px;
+  font-family: "Playfair", serif;
+}

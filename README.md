@@ -33,10 +33,32 @@ Our system consists of a Chromium extension front end developed in HTML, CSS, an
 ## Getting Started
 This project is subject to a pending U.S. patent (currently a provisional patent application). We have released this demo version to allow the community to explore and experiment with the technology.
 
-1. **Back end** (`/back_end`):
+**Important**: This repository contains 3 separate projects that must be deployed independently. Running everything from this single repository will not work. This repo is a compilation of 3 distinct projects that need to be deployed as separate services.
 
-2. **Front end** (`/front_end`):
-   - Contains code for the Chromium extension front end
+### Project Structure
+
+**Deployment Requirements**: You need to deploy each project separately:
+
+1. **Deploy the Node.js backend** (`/back_end_js`) as a standalone service
+2. **Deploy the Python backend** (`/back_end_py`) as a standalone service  
+3. **Deploy the frontend** (`/front_end`) and configure it with the backend URLs
+
+**Frontend Configuration**: After deploying both backends (see specific instructions in `/back_end_js/README.md` and `/back_end_py/README.md`), create a `.env` file in the frontend directory with the following environment variables:
+
+- `LCA_SERVER_URL` → URL of your deployed Node.js server
+- `LCA_PY_SERVER_URL` → URL of your deployed Python server
+
+1. **Backend JavaScript** (`/back_end_js`):
+   - Node.js server that handles the core LCA processing pipeline (raw materials, freight, electronic devices footprint calculation)
+
+2. **Backend Python** (`/back_end_py`):
+   - Python-based components for handling electricity footprint calculation
+
+3. **Frontend** (`/front_end`):
+   - Chromium browser extension built with HTML, CSS, and JavaScript
+   - Provides the user interface for inputting natural language descriptions
+   - Displays interactive environmental impact visualizations
+   - Manages user interactions and communicates with the backend services
 
 ### Installation
 
@@ -44,6 +66,27 @@ This project is subject to a pending U.S. patent (currently a provisional patent
    ```sh
    git clone https://github.com/iamZhihanZhang/Living-Sustainability
    ```
+
+2. **Backend Setup**:
+   ```sh
+   # For Node.js backend
+   cd back_end_js
+   npm install
+   
+   # For Python backend (if applicable)
+   cd ../back_end_py
+   pip install -r requirements.txt
+   ```
+
+3. **Frontend Setup**:
+   ```sh
+   cd front_end
+   npm install
+   ```
+
+4. **Environment Configuration**:
+   - Set up your API keys and environment variables as needed
+   - Configure database connections and external service integrations
 
 ## Cite Living Sustainability
 ```

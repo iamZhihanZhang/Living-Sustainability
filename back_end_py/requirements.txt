@@ -1,0 +1,5 @@
+flask
+geopy
+requests
+openai
+pydantic

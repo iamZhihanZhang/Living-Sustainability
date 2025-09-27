@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Carbon Footprint Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@100..900&family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/popup.css">
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div class="popup-window lca-lexend">
+      <div class="flex-center lca-viz-header-3 cg-12 pd-12">
+        <div class="flex-center cg-12 lca-viz-header-title">
+          <img alt="logo" src="../assets/img/lca-48.png" class="icon-12">
+          <span class="fz-12"><b>Living Sustainability</b></span>
+        </div>
+        <button id="lca-viz-close-map" class="lca-viz-close-button-small flex-center">
+          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="lca-mode-container first br-20">
+        <div class="flex-center cg-8">
+          <img src="../assets/img/paintbrush-icon.png" class="icon-16">
+          <span class="fz-12 olive-text"><b>Enable LCA Highlight</b></span>
+        </div>
+        <div class="toggle-container" id="toggle1">
+          <div class="toggle-switch" id="switch1"></div>
+        </div>
+      </div>
+      <div class="lca-mode-container br-20 lcz-mt-16">
+        <div class="flex-center cg-8">
+          <img src="../assets/img/search-icon.png" class="icon-16">
+          <span class="fz-12 olive-text"><b>Enable Auto Detect</b></span>
+        </div>
+        <div class="toggle-container" id="toggle2">
+          <div class="toggle-switch" id="switch2"></div>
+        </div>
+      </div>
+      <button class="how-to fz-12 olive-text lca-lexend">
+        <a href="https://github.com/fudgelgentle/lca-extension-cli" target="_blank">Github</a>
+      </button>
+    </div>
+
+  </body>
+</html>

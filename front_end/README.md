@@ -8,7 +8,7 @@ Follow these steps to install and run the extension locally:
 2. **Build the extension:** Run `npx xt-build` in the root directory. This command generates a `release.zip` containing the packaged extension.
 3. **Extract the build:** Unzip the generated `release.zip` to create a `release` folder.
 4. **Load in Chrome:**
-    - Navigate to `chrome://extensions/` in your browser
+    - Navigate to `chrome://extensions/` in your Chrome browser
     - Go to the "My extensions" section
     - Enable "Developer Mode" (toggle in the top right corner)
     - Click "Load unpacked" button (top left)
